@@ -45,7 +45,6 @@
             text-align: center;
             padding: 40px 20px;
         }
-        /* Картинка теперь полная прямоугольная с красивыми краями */
         .hero img {
             max-width: 280px;
             width: 100%;
@@ -191,7 +190,7 @@
             </ul>
         </div>
 
-        <!-- Онлайн-запись -->
+        <!-- Онлайн-запись (Отправка в сообщения группы ВК) -->
         <div class="section-card" id="booking">
             <h3>Онлайн-запись на ремонт</h3>
             <form id="bookingForm" onsubmit="sendBooking(event)">
@@ -206,19 +205,20 @@
                 <div class="form-group">
                     <label>Выберите услугу:</label>
                     <select id="clientService">
-                        <option value="Диагностика">Компьютерная диагностика</option>
+                        <option value="Компьютерная диагностика">Компьютерная диагностика</option>
                         <option value="Поиск неисправностей">Поиск неисправностей</option>
                         <option value="Ремонт проводки">Ремонт проводки</option>
-                        <option value="Сигнализация">Установка сигнализации</option>
-                        <option value="Автозвук">Установка автозвука</option>
-                        <option value="Другое">Другое / Консультация</option>
+                        <option value="Установка сигнализации">Установка сигнализации</option>
+                        <option value="Установка автозвука">Установка автозвука</option>
+                        <option value="Чистка форсунок">Чистка форсунок</option>
+                        <option value="Другое / Консультация">Другое / Консультация</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label>Желаемая дата и время:</label>
                     <input type="datetime-local" id="clientTime" required>
                 </div>
-                <button type="submit" class="btn" style="width: 100%; border: none; cursor: pointer;">Отправить заявку</button>
+                <button type="submit" class="btn" style="width: 100%; border: none; cursor: pointer;">Отправить заявку в ВК</button>
             </form>
             <div id="bookingResult" style="margin-top: 15px; text-align: center; color: #10b981; font-weight: bold;"></div>
         </div>
@@ -243,9 +243,22 @@
     <script>
         function sendBooking(event) {
             event.preventDefault();
+            
             const name = document.getElementById('clientName').value;
+            const phone = document.getElementById('clientPhone').value;
             const service = document.getElementById('clientService').value;
-            document.getElementById('bookingResult').innerHTML = "Спасибо, " + name + "! Ваша заявка на «" + service + "» принята. Скоро свяжемся.";
+            const time = document.getElementById('clientTime').value;
+
+            // Текст, который автоматически попадет в сообщения группы ВК
+            const text = `Здравствуйте! Хочу записаться на ремонт.\n\n👤 Имя: ${name}\n📞 Телефон: ${phone}\n🛠 Услуга: ${service}\n⏰ Время: ${time}`;
+            
+            // Ссылка на сообщения вашей группы ВК
+            const vkGroupUrl = `https://vk.me/autoelectrik82?text=${encodeURIComponent(text)}`;
+
+            // Открываем диалог с сообществом ВКонтакте
+            window.open(vkGroupUrl, '_blank');
+
+            document.getElementById('bookingResult').innerHTML = "Спасибо, " + name + "! Открывается чат с мастерской в ВК для отправки заявки.";
             document.getElementById('bookingForm').reset();
         }
     </script>
