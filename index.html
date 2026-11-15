@@ -172,6 +172,7 @@
         .btn-primary {
             background-color: var(--accent-color);
             color: #ffffff;
+            border: none;
         }
 
         .btn-primary:hover {
@@ -192,7 +193,7 @@
 
         /* Секции */
         section {
-            padding: 6rem 2rem;
+            padding: 6rem 2rem 2rem;
             max-width: 1200px;
             margin: 0 auto;
         }
@@ -236,32 +237,99 @@
             font-size: 0.95rem;
         }
 
-        /* Информация (Контакты и график) */
-        .info-grid {
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
+        /* Секция онлайн-записи */
+        .booking-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--text-color);
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 0.85rem 1rem;
+            background-color: var(--bg-color);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: var(--text-color);
+            font-size: 1rem;
+            outline: none;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus, .form-group select:focus {
+            border-color: var(--accent-color);
+        }
+
+        #bookingResult {
+            margin-top: 1rem;
             text-align: center;
+            font-weight: 600;
+            color: #10b981;
+        }
+
+        /* Информация (Контакты, график и Карта) */
+        .info-grid {
             display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            align-items: stretch;
         }
 
         .info-card {
             background-color: var(--card-bg);
             border: 1px solid var(--border-color);
             border-radius: 12px;
-            padding: 2.5rem 2rem;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
         .info-card h3 {
             font-size: 1.1rem;
-            margin-bottom: 0.5rem;
+            margin-bottom: 1rem;
             color: var(--accent-color);
             text-transform: uppercase;
             letter-spacing: 0.5px;
+            text-align: left;
         }
 
         .info-card p {
             color: var(--text-muted);
             font-size: 1.05rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Контейнер интерактивной карты */
+        .map-container {
+            width: 100%;
+            height: 250px;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            margin-top: 1rem;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
         }
 
         /* Подвал */
@@ -271,6 +339,7 @@
             border-top: 1px solid var(--border-color);
             color: var(--text-muted);
             font-size: 0.9rem;
+            margin-top: 4rem;
         }
 
         /* Бургер для мобильных */
@@ -331,7 +400,8 @@
             <a href="#" class="logo">Автоэлектрик <span>82</span></a>
             <ul class="nav-menu" id="navMenu">
                 <li><a href="#services">Услуги</a></li>
-                <li><a href="#info">Контакты и график</a></li>
+                <li><a href="#booking">Запись</a></li>
+                <li><a href="#info">Контакты и карта</a></li>
             </ul>
             <button class="burger" id="burgerBtn" onclick="toggleMenu()" aria-label="Меню">
                 <span></span>
@@ -352,8 +422,8 @@
                 <h1>Профессиональная автоэлектрика и диагностика</h1>
                 <p>Качественный поиск неисправностей, ремонт проводки, установка сигнализации, автозвука и чистка форсунок с гарантией результата.</p>
                 <div class="hero-buttons">
-                    <a href="tel:+79787547947" class="btn btn-primary">Позвонить мастеру</a>
-                    <a href="https://vk.ru/nikitossimf82" target="_blank" class="btn btn-secondary">ВКонтакте</a>
+                    <a href="#booking" class="btn btn-primary">Онлайн-запись</a>
+                    <a href="tel:+79787547947" class="btn btn-secondary">Позвонить</a>
                 </div>
             </div>
         </div>
@@ -394,21 +464,62 @@
         </div>
     </section>
 
-    <!-- Информация (Контакты и график) -->
+    <!-- Форма онлайн-записи -->
+    <section id="booking">
+        <h2>Онлайн-запись на ремонт</h2>
+        <div class="booking-container">
+            <form id="bookingForm" onsubmit="sendBooking(event)">
+                <div class="form-group">
+                    <label>Ваше имя:</label>
+                    <input type="text" id="clientName" placeholder="Введите ваше имя" required>
+                </div>
+                <div class="form-group">
+                    <label>Номер телефона:</label>
+                    <input type="tel" id="clientPhone" placeholder="+7 (___) ___-__-__" required>
+                </div>
+                <div class="form-group">
+                    <label>Выберите услугу:</label>
+                    <select id="clientService">
+                        <option value="Компьютерная диагностика">Компьютерная диагностика</option>
+                        <option value="Поиск неисправностей">Поиск неисправностей</option>
+                        <option value="Ремонт проводки">Ремонт проводки</option>
+                        <option value="Установка сигнализации">Установка сигнализации</option>
+                        <option value="Установка автозвука">Установка автозвука</option>
+                        <option value="Чистка форсунок">Чистка форсунок</option>
+                        <option value="Установка тонировки">Установка тонировки</option>
+                        <option value="Другое / Консультация">Другое / Консультация</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Желаемая дата и время:</label>
+                    <input type="datetime-local" id="clientTime" required>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 0.5rem;">Подтвердить запись</button>
+            </form>
+            <div id="bookingResult"></div>
+        </div>
+    </section>
+
+    <!-- Информация (Контакты, график и Карта) -->
     <section id="info">
-        <h2>Контакты и режим работы</h2>
+        <h2>Контакты и карта проезда</h2>
         <div class="info-grid">
             <div class="info-card">
-                <h3>Телефон</h3>
-                <p><a href="tel:+79787547947">+7 (978) 754-79-47</a></p>
+                <div>
+                    <h3>Информация</h3>
+                    <p><strong>Телефон:</strong><br><a href="tel:+79787547947">+7 (978) 754-79-47</a></p>
+                    <p><strong>Адрес:</strong><br>Симферопольский район, с. Белоглинка, пер. Урожайный, 35</p>
+                    <p><strong>Режим работы:</strong><br>Пн – Сб: с 08:00 до 18:00</p>
+                </div>
+                <a href="https://yandex.ru/maps/?text=с.%20Белоглинка%20переулок%20Урожайный%2035" target="_blank" class="btn btn-secondary" style="width: 100%; margin-top: 1rem;">Открыть в Яндекс.Картах</a>
             </div>
-            <div class="info-card">
-                <h3>Адрес</h3>
-                <p>Симферопольский район,<br>село Белоглинка</p>
-            </div>
-            <div class="info-card">
-                <h3>Режим работы</h3>
-                <p>Понедельник – Суббота<br>с 08:00 до 18:00</p>
+            
+            <div class="info-card" style="padding: 1rem;">
+                <h3>Мы на карте</h3>
+                <div class="map-container">
+                    <!-- Встроенная интерактивная Яндекс Карта по точным координатам с. Белоглинка, пер. Урожайный, 35 -->
+                    <iframe src="https://yandex.ru/map-widget/v1/?ll=34.053500%2C44.975000&z=15&l=map&pt=34.053500%2C44.975000,pm2rdm" allowfullscreen="true"></iframe>
+                </div>
             </div>
         </div>
     </section>
@@ -418,7 +529,7 @@
         <p>&copy; 2026 Автоэлектрик 82 (с. Белоглинка). Все права защищены.</p>
     </footer>
 
-    <!-- Скрипт мобильного меню -->
+    <!-- Скрипты (Мобильное меню и обработка формы) -->
     <script>
         function toggleMenu() {
             const menu = document.getElementById('navMenu');
@@ -430,6 +541,18 @@
                 document.getElementById('navMenu').classList.remove('active');
             });
         });
+
+        function sendBooking(event) {
+            event.preventDefault();
+            const name = document.getElementById('clientName').value;
+            const phone = document.getElementById('clientPhone').value;
+            const service = document.getElementById('clientService').value;
+            const time = document.getElementById('clientTime').value;
+
+            // Вывод сообщения об успешной записи на экране
+            document.getElementById('bookingResult').innerHTML = "Спасибо, " + name + "! Ваша заявка на «" + service + "» принята. Мастер свяжется с вами в ближайшее время.";
+            document.getElementById('bookingForm').reset();
+        }
     </script>
 </body>
 </html>
