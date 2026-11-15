@@ -24,7 +24,7 @@
         h1, h3 {
             color: #007bff;
         }
-        .booking-section {
+        .booking-section, .contacts-section {
             margin-top: 30px;
             padding: 20px;
             background: #f9f9f9;
@@ -66,6 +66,19 @@
             font-weight: bold;
             color: #28a745;
         }
+        .map-btn {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 15px;
+            background: #28a745;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        .map-btn:hover {
+            background: #218838;
+        }
     </style>
 </head>
 <body>
@@ -93,6 +106,14 @@
                 <button type="submit" class="submit-btn">Записаться</button>
             </form>
             <div id="bookingResult"></div>
+        </div>
+
+        <!-- Блок контактов и адреса с картой -->
+        <div class="contacts-section">
+            <h3 style="margin-top: 0;">Контакты и адрес</h3>
+            <p><strong>Телефон:</strong> <a href="tel:+79787547947">+7 (978) 754-79-47</a></p>
+            <p><strong>Адрес мастерской:</strong> с. Белоглинка, переулок Урожайный, 35</p>
+            <a href="https://yandex.ru/maps/?text=с.%20Белоглинка%20переулок%20Урожайный%2035" target="_blank" class="map-btn">Открыть на карте</a>
         </div>
     </div>
 
