@@ -24,7 +24,7 @@
         h1, h3 {
             color: #007bff;
         }
-        .booking-section, .contacts-section {
+        .booking-section {
             margin-top: 30px;
             padding: 20px;
             background: #f9f9f9;
@@ -66,26 +66,13 @@
             font-weight: bold;
             color: #28a745;
         }
-        .map-btn {
-            display: inline-block;
-            margin-top: 10px;
-            padding: 10px 15px;
-            background: #28a745;
-            color: white;
-            text-decoration: none;
-            border-radius: 4px;
-            font-weight: bold;
-        }
-        .map-btn:hover {
-            background: #218838;
-        }
     </style>
 </head>
 <body>
 
     <div class="container">
         <h1>Сайт визитка</h1>
-        <p>Профессиональный ремонт электрики и автоэлектрики.</p>
+        <p>Профессиональный ремонт электрики и оборудования.</p>
         
         <!-- Блок онлайн-записи -->
         <div class="booking-section">
@@ -107,22 +94,13 @@
             </form>
             <div id="bookingResult"></div>
         </div>
-
-        <!-- Блок контактов и карты -->
-        <div class="contacts-section">
-            <h3 style="margin-top: 0;">Контакты и адрес</h3>
-            <p><strong>Телефон:</strong> <a href="tel:+79787547947">+7 (978) 754-79-47</a></p>
-            <p><strong>Адрес мастерской:</strong> Крым (укажите ваш точный адрес)</p>
-            <!-- Кнопка со ссылкой на Яндекс Карты -->
-            <a href="https://yandex.ru/maps" target="_blank" class="map-btn">Открыть на карте</a>
-        </div>
     </div>
 
     <script>
     function sendBooking(event) {
         event.preventDefault();
         const name = document.getElementById('clientName').value;
-        const phone = document.getElementById('clientPhone'.value;
+        const phone = document.getElementById('clientPhone').value;
         const time = document.getElementById('clientTime').value;
 
         // Вывод сообщения об успешной записи
