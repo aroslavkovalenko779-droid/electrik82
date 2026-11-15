@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Сайт визитка - Ремонт электрики</title>
+    <title>Ремонт электрики и автоэлектрики | с. Белоглинка</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -14,7 +14,7 @@
             color: #333;
         }
         .container {
-            max-width: 600px;
+            max-width: 650px;
             margin: 0 auto;
             background: #fff;
             padding: 30px;
@@ -24,12 +24,31 @@
         h1, h3 {
             color: #007bff;
         }
-        .booking-section, .contacts-section {
-            margin-top: 30px;
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        header p {
+            color: #555;
+            font-size: 18px;
+        }
+        .services-section, .booking-section, .contacts-section {
+            margin-top: 25px;
             padding: 20px;
             background: #f9f9f9;
             border: 1px solid #ddd;
             border-radius: 8px;
+        }
+        .services-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .services-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+        }
+        .services-list li:last-child {
+            border-bottom: none;
         }
         .form-group {
             margin-bottom: 12px;
@@ -84,8 +103,23 @@
 <body>
 
     <div class="container">
-        <h1>Сайт визитка</h1>
-        <p>Профессиональный ремонт электрики и автоэлектрики.</p>
+        <!-- Шапка сайта -->
+        <header>
+            <h1>Профессиональный автоэлектрик и ремонт электрики</h1>
+            <p>Диагностика, ремонт проводки, установка оборудования любой сложности.</p>
+        </header>
+
+        <!-- Перечень услуг -->
+        <div class="services-section">
+            <h3 style="margin-top: 0;">Наши услуги</h3>
+            <ul class="services-list">
+                <li>⚡ Компьютерная диагностика систем автомобиля</li>
+                <li>⚡ Поиск и устранение обрывов проводки</li>
+                <li>⚡ Чип-тюнинг и ремонт электронных блоков</li>
+                <li>⚡ Установка дополнительного оборудования</li>
+                <li>⚡ Ремонт общей и бытовой электрики</li>
+            </ul>
+        </div>
         
         <!-- Блок онлайн-записи -->
         <div class="booking-section">
@@ -113,7 +147,6 @@
             <h3 style="margin-top: 0;">Контакты и адрес</h3>
             <p><strong>Телефон:</strong> <a href="tel:+79787547947">+7 (978) 754-79-47</a></p>
             <p><strong>Адрес мастерской:</strong> с. Белоглинка, переулок Урожайный, 35</p>
-            <!-- Ссылка на карты с поиском вашего адреса -->
             <a href="https://yandex.ru/maps/?text=с.%20Белоглинка%20переулок%20Урожайный%2035" target="_blank" class="map-btn">Открыть на карте</a>
         </div>
     </div>
@@ -125,8 +158,8 @@
         const phone = document.getElementById('clientPhone').value;
         const time = document.getElementById('clientTime').value;
 
-        // Вывод сообщения об успешной записи
-        document.getElementById('bookingResult').innerHTML = "Спасибо, " + name + "! Ваша заявка принята.";
+        // Вывод сообщения об успешной заявке
+        document.getElementById('bookingResult').innerHTML = "Спасибо, " + name + "! Ваша заявка принята. Скоро свяжемся.";
         document.getElementById('bookingForm').reset();
     }
     </script>
