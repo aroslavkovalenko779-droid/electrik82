@@ -88,11 +88,19 @@
             text-decoration: none;
             font-weight: bold;
             display: inline-block;
+            text-align: center;
         }
         .btn-secondary {
             background: #111827;
             border: 1px solid #1f2937;
             color: #fff;
+        }
+        .btn-vk {
+            background: #0077ff;
+            color: #fff;
+        }
+        .btn-vk:hover {
+            background: #0066ee;
         }
         .section-card {
             background: #111827;
@@ -100,15 +108,12 @@
             border-radius: 12px;
             padding: 25px;
             margin-bottom: 20px;
-        }
-        .section-card h3 {
-            color: #3b82f6;
-            margin-top: 0;
-            margin-bottom: 15px;
+            text-align: center;
         }
         .services-list {
             list-style: none;
             padding: 0;
+            text-align: left;
         }
         .services-list li {
             padding: 10px 0;
@@ -117,25 +122,6 @@
         }
         .services-list li:last-child {
             border-bottom: none;
-        }
-        .form-group {
-            margin-bottom: 15px;
-            text-align: left;
-        }
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            font-size: 0.9rem;
-            color: #d1d5db;
-        }
-        .form-group input, .form-group select {
-            width: 100%;
-            padding: 10px;
-            background: #0b0f19;
-            border: 1px solid #1f2937;
-            border-radius: 6px;
-            color: #fff;
-            box-sizing: border-box;
         }
         .map-frame {
             width: 100%;
@@ -172,13 +158,13 @@
             <p>Качественный поиск неисправностей, ремонт проводки, установка сигнализации и автозвука.</p>
             
             <div class="btn-group">
-                <a href="#booking" class="btn">Записаться онлайн</a>
+                <a href="#booking" class="btn">Записаться</a>
                 <a href="tel:+79787547947" class="btn btn-secondary">Позвонить</a>
             </div>
         </div>
 
         <!-- Услуги -->
-        <div class="section-card" id="services">
+        <div class="section-card" id="services" style="text-align: left;">
             <h3>Наши услуги</h3>
             <ul class="services-list">
                 <li>⚡ Компьютерная диагностика систем автомобиля</li>
@@ -190,47 +176,21 @@
             </ul>
         </div>
 
-        <!-- Онлайн-запись (Отправка в сообщения группы ВК) -->
+        <!-- Секция быстрой связи и записи через ВК -->
         <div class="section-card" id="booking">
             <h3>Онлайн-запись на ремонт</h3>
-            <form id="bookingForm" onsubmit="sendBooking(event)">
-                <div class="form-group">
-                    <label>Ваше имя:</label>
-                    <input type="text" id="clientName" placeholder="Введите ваше имя" required>
-                </div>
-                <div class="form-group">
-                    <label>Телефон:</label>
-                    <input type="tel" id="clientPhone" placeholder="+7 (978) 000-00-00" required>
-                </div>
-                <div class="form-group">
-                    <label>Выберите услугу:</label>
-                    <select id="clientService">
-                        <option value="Компьютерная диагностика">Компьютерная диагностика</option>
-                        <option value="Поиск неисправностей">Поиск неисправностей</option>
-                        <option value="Ремонт проводки">Ремонт проводки</option>
-                        <option value="Установка сигнализации">Установка сигнализации</option>
-                        <option value="Установка автозвука">Установка автозвука</option>
-                        <option value="Чистка форсунок">Чистка форсунок</option>
-                        <option value="Другое / Консультация">Другое / Консультация</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>Желаемая дата и время:</label>
-                    <input type="datetime-local" id="clientTime" required>
-                </div>
-                <button type="submit" class="btn" style="width: 100%; border: none; cursor: pointer;">Отправить заявку в ВК</button>
-            </form>
-            <div id="bookingResult" style="margin-top: 15px; text-align: center; color: #10b981; font-weight: bold;"></div>
+            <p>Нажмите на кнопку ниже, чтобы написать мастеру напрямую в ВКонтакте и согласовать удобное время:</p>
+            <a href="https://vk.me/autoelectrik82?text=%DЗдравствуйте!%20Хочу%20записаться%20на%20ремонт." target="_blank" class="btn btn-vk" style="font-size: 1.1rem; padding: 15px 30px; display: inline-block; margin-top: 10px;">💬 Написать в ВКонтакте</a>
         </div>
 
         <!-- Контакты и карта -->
-        <div class="section-card" id="contacts">
+        <div class="section-card" id="contacts" style="text-align: left;">
             <h3>Контакты и адрес</h3>
             <p><strong>Телефон:</strong> <a href="tel:+79787547947" style="color: #3b82f6;">+7 (978) 754-79-47</a></p>
-            <p><strong>Адрес:</strong> Симферопольский район, с. Белоглинка, переулок Урожайный, 35</p>
+            <p><strong>Адрес:</strong> Симферопольский район, с. Белоглинка, Сквозная улица, 35</p>
             <p><strong>Режим работы:</strong> Пн – Сб: с 08:00 до 18:00</p>
             
-            <a href="https://yandex.ru/maps/?text=с.%20Белоглинка%20переулок%20Урожайный%2035" target="_blank" class="btn btn-secondary" style="display: block; text-align: center; margin-bottom: 15px;">Открыть в Яндекс.Картах</a>
+            <a href="https://yandex.ru/maps/?text=с.%20Белоглинка%20Сквозная%20улица%2035" target="_blank" class="btn btn-secondary" style="display: block; text-align: center; margin-top: 15px; margin-bottom: 15px;">Открыть в Яндекс.Картах</a>
             
             <iframe class="map-frame" src="https://yandex.ru/map-widget/v1/?ll=34.053500%2C44.975000&z=15&l=map&pt=34.053500%2C44.975000,pm2rdm" allowfullscreen="true"></iframe>
         </div>
@@ -239,28 +199,5 @@
     <footer>
         <p>&copy; 2026 Автоэлектрик 82. Все права защищены.</p>
     </footer>
-
-    <script>
-        function sendBooking(event) {
-            event.preventDefault();
-            
-            const name = document.getElementById('clientName').value;
-            const phone = document.getElementById('clientPhone').value;
-            const service = document.getElementById('clientService').value;
-            const time = document.getElementById('clientTime').value;
-
-            // Текст, который автоматически попадет в сообщения группы ВК
-            const text = `Здравствуйте! Хочу записаться на ремонт.\n\n👤 Имя: ${name}\n📞 Телефон: ${phone}\n🛠 Услуга: ${service}\n⏰ Время: ${time}`;
-            
-            // Ссылка на сообщения вашей группы ВК
-            const vkGroupUrl = `https://vk.me/autoelectrik82?text=${encodeURIComponent(text)}`;
-
-            // Открываем диалог с сообществом ВКонтакте
-            window.open(vkGroupUrl, '_blank');
-
-            document.getElementById('bookingResult').innerHTML = "Спасибо, " + name + "! Открывается чат с мастерской в ВК для отправки заявки.";
-            document.getElementById('bookingForm').reset();
-        }
-    </script>
 </body>
 </html>
