@@ -517,7 +517,6 @@
             <div class="info-card" style="padding: 1rem;">
                 <h3>Мы на карте</h3>
                 <div class="map-container">
-                    <!-- Встроенная интерактивная Яндекс Карта по точным координатам с. Белоглинка, пер. Урожайный, 35 -->
                     <iframe src="https://yandex.ru/map-widget/v1/?ll=34.053500%2C44.975000&z=15&l=map&pt=34.053500%2C44.975000,pm2rdm" allowfullscreen="true"></iframe>
                 </div>
             </div>
@@ -549,7 +548,6 @@
             const service = document.getElementById('clientService').value;
             const time = document.getElementById('clientTime').value;
 
-            // Вывод сообщения об успешной записи на экране
             document.getElementById('bookingResult').innerHTML = "Спасибо, " + name + "! Ваша заявка на «" + service + "» принята. Мастер свяжется с вами в ближайшее время.";
             document.getElementById('bookingForm').reset();
         }
